@@ -2,17 +2,29 @@
 name = "dilemma"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.85"
 authors = ["CryptoPatrick <cryptopatrick@gmail.com>"]
 
 ###############################################################################
-description = "A rigorously tested implementation of Stalmarck's Dilemma branching algorithm."
+description = "Generic engine for the dilemma rule of Stalmarck's method: n-saturation over user-defined logic states."
 documentation = "https://docs.rs/dilemma"
 homepage = "https://github.com/cryptopatrick/dilemma"
 repository = "https://github.com/cryptopatrick/dilemma"
 readme = "README.md"
-keywords = ["<KEYWORD1>", "<KEYWORD2>" ]
+keywords = ["stalmarck", "sat", "solver", "logic", "verification"]
+categories = ["algorithms", "mathematics", "science"]
 license = "AGPL-3.0-only"
 autotests = false
+include = [
+    "/src/**/*",
+    "/tests/**/*",
+    "/examples/**/*",
+    "/Cargo.toml",
+    "/README.md",
+    "/CHANGELOG.md",
+    "/LICENSE",
+    "/COPYING",
+]
 
 ###############################################################################
 [lib]
@@ -23,5 +35,24 @@ path = "src/lib.rs"
 name = "tests"
 path = "tests/test.rs"
 
+[[example]]
+name = "basic"
+path = "examples/basic.rs"
+
 ###############################################################################
+[features]
+default = ["rayon"]
+rayon = ["dep:rayon"]
+
 [dependencies]
+rayon = { version = "1.10", optional = true }
+
+###############################################################################
+[lints.rust]
+missing_docs = "warn"
+missing_debug_implementations = "warn"
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+allow_attributes_without_reason = "warn"

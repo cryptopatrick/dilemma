@@ -1,5 +1,6 @@
-//! Crate description.
+#![doc = include_str!("../README.md")]
 
-fn hello() {
-    println!("From lib.rs");
-}
+pub mod engine;
+mod state;
+
+pub use state::{LogicState, LogicValue, LogicVariable, SaturationStatus};
